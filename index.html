@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>5 Hábitos de Consultoria Estratégica</title>
+<style>
+:root{
+  --branco:#ffffff;
+  --fundo:#f9f9f9;
+  --fundo-2:#f0f0f0;
+  --linha:#e0e0e0;
+  --texto:#1a1a1a;
+  --texto-2:#666666;
+  --texto-3:#999999;
+  --sinal:#2b7a8a;
+  --falha:#c07a4e;
+  --acerto:#5a8a6a;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--branco);
+  color:var(--texto);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:4rem;
+}
+.envelope{max-width:34rem;margin:0 auto;padding:0 1.25rem}
+
+/* topo */
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--linha);
+}
+.barra{display:flex;align-items:center;gap:.75rem;height:52px}
+.marca{font-family:var(--serif);font-size:1.02rem;letter-spacing:.01em;color:var(--texto);flex:1;cursor:pointer;font-weight:600}
+.marca span{color:var(--texto-3);font-weight:400}
+.icone{
+  background:var(--fundo-2);border:1px solid var(--linha);color:var(--texto-2);
+  border-radius:3px;padding:.35rem .6rem;font-size:.82rem;font-family:var(--sans);
+  cursor:pointer;line-height:1.2;
+}
+.icone:hover{border-color:var(--texto);color:var(--texto)}
+.icone:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--sinal);outline-offset:2px
+}
+
+/* régua de progresso */
+.regua{display:flex;gap:3px;height:3px;margin-bottom:1px}
+.regua i{flex:1;background:var(--linha);display:block}
+.regua i.feito{background:var(--sinal)}
+.regua i.agora{background:var(--texto-2)}
+
+/* estrutura */
+main{padding-top:2rem}
+.passo{animation:entra .22s ease-out}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.passo{animation:none}}
+
+.etiqueta{
+  font-size:.78rem;color:var(--texto-3);letter-spacing:.04em;margin-bottom:.4rem;text-transform:uppercase;
+}
+h1{
+  font-family:var(--serif);font-weight:400;font-size:1.85rem;line-height:1.2;
+  margin:0 0 1rem;letter-spacing:-.01em;color:var(--texto)
+}
+h2{
+  font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.25;
+  margin:0 0 .7rem;color:var(--texto)
+}
+h3{font-size:.95rem;font-weight:600;margin:1.6rem 0 .5rem;color:var(--texto)}
+p{margin:0 0 .85rem;color:var(--texto)}
+.discreto{color:var(--texto-2);font-size:.93rem}
+.miudo{color:var(--texto-3);font-size:.83rem;line-height:1.5}
+
+/* narrativa do caso */
+.historia{
+  font-family:var(--serif);font-size:1.06rem;line-height:1.65;
+  border-left:2px solid var(--linha);padding-left:1rem;margin:0 0 1.4rem;
+  color:var(--texto);background:var(--fundo-2);padding:.8rem 1rem;
+}
+.historia p{margin:0 0 .8rem;color:inherit}
+.historia p:last-child{margin-bottom:0}
+
+.pergunta{
+  font-size:1.02rem;font-weight:600;margin:0 0 .35rem;color:var(--texto)
+}
+
+/* campos */
+textarea{
+  width:100%;min-height:8.5rem;background:var(--branco);color:var(--texto);
+  border:1px solid var(--linha);border-radius:3px;padding:.8rem;
+  font-family:var(--sans);font-size:1rem;line-height:1.5;resize:vertical;
+}
+textarea:disabled{opacity:.75;color:var(--texto-2)}
+input[type=number],input[type=text]{
+  background:var(--branco);color:var(--texto);border:1px solid var(--linha);
+  border-radius:3px;padding:.5rem .55rem;font-family:var(--sans);font-size:1rem;width:100%
+}
+input:disabled{opacity:.7}
+
+/* botões */
+.acoes{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem;align-items:center}
+button.principal{
+  background:var(--sinal);color:var(--branco);border:none;border-radius:3px;
+  padding:.72rem 1.15rem;font-size:.97rem;font-weight:600;font-family:var(--sans);cursor:pointer
+}
+button.principal:disabled{background:var(--fundo-2);color:var(--texto-3);cursor:not-allowed;border:1px solid var(--linha)}
+button.secundaria{
+  background:var(--branco);color:var(--sinal);border:1px solid var(--sinal);border-radius:3px;
+  padding:.72rem 1rem;font-size:.95rem;font-family:var(--sans);cursor:pointer;font-weight:500
+}
+button.secundaria:hover{background:var(--fundo-2)}
+button.secundaria:disabled{opacity:.45;cursor:not-allowed}
+
+/* rubrica */
+.rubrica{list-style:none;margin:.2rem 0 0;padding:0}
+.rubrica li{margin:0 0 .1rem}
+.rubrica label{
+  display:flex;gap:.7rem;align-items:flex-start;padding:.6rem .7rem;
+  border:1px solid var(--linha);border-radius:3px;cursor:pointer;background:var(--branco)
+}
+.rubrica label:hover{background:var(--fundo-2);border-color:var(--texto-3)}
+.rubrica input{margin:.25rem 0 0;accent-color:var(--sinal);width:1.05rem;height:1.05rem;flex:none}
+.rubrica label.marcado{border-color:var(--sinal);background:var(--fundo-2)}
+.rubrica span{font-size:.95rem;line-height:1.45;color:var(--texto)}
+
+/* veredito e gabarito */
+.veredito{
+  border:1px solid var(--linha);border-left:3px solid var(--falha);
+  background:var(--fundo-2);padding:.9rem 1rem;margin:0 0 1.2rem;border-radius:3px
+}
+.veredito.bom{border-left-color:var(--acerto)}
+.veredito strong{display:block;font-size:1rem;margin-bottom:.25rem;color:var(--texto)}
+.veredito p{margin:0;font-size:.94rem;color:var(--texto-2)}
+
+.gabarito{border-top:1px solid var(--linha);padding-top:1.3rem;margin-top:1.3rem}
+.gabarito .rotulo{font-size:.78rem;color:var(--texto-3);margin-bottom:.5rem;text-transform:uppercase}
+.gabarito .corpo{font-family:var(--serif);font-size:1.05rem;line-height:1.62}
+.gabarito .corpo p{margin:0 0 .8rem;color:var(--texto)}
+.chave{
+  font-family:var(--serif);font-size:1.18rem;line-height:1.4;color:var(--sinal);
+  border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  padding:.9rem 0;margin:1.3rem 0 0;font-weight:600
+}
+
+.saibamaislabel{
+  display:inline-block;margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--linha);font-size:.88rem;color:var(--sinal);font-weight:600;cursor:pointer;text-decoration:none
+}
+.saibamaislabel:hover{text-decoration:underline}
+
+.saibamais{
+  background:var(--fundo-2);border:1px solid var(--linha);border-radius:3px;padding:1rem;margin:1rem 0;font-size:.92rem;line-height:1.6
+}
+.saibamais .metodo{font-weight:600;color:var(--texto);margin-bottom:.5rem}
+.saibamais .autor{color:var(--texto-2);font-size:.88rem;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--linha)}
+.saibamais p{margin:0 0 .6rem;color:var(--texto-2)}
+.saibamais p:last-child{margin-bottom:0}
+
+/* tabela */
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 1rem;background:var(--branco)}
+th,td{padding:.5rem .4rem;text-align:right;border-bottom:1px solid var(--linha)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--texto-3);font-weight:500;font-size:.8rem}
+tfoot td{font-weight:700;border-bottom:none;border-top:1px solid var(--texto-3);color:var(--texto)}
+
+/* ferramenta embutida */
+.ferramenta{
+  border:1px solid var(--linha);background:var(--fundo-2);border-radius:3px;
+  padding:.9rem 1rem;margin:0 0 1.3rem
+}
+.ferramenta .titulo{font-size:.82rem;color:var(--texto-3);margin-bottom:.6rem;text-transform:uppercase}
+.saida{font-family:var(--serif);font-size:1.02rem;color:var(--sinal);margin-top:.7rem;min-height:1.4rem;font-weight:600}
+.aviso-calc{font-size:.78rem;color:var(--texto-3);margin-top:.5rem;font-style:italic}
+
+/* ordenação */
+.pilha{list-style:none;margin:0 0 1rem;padding:0;counter-reset:ord}
+.pilha li{
+  display:flex;gap:.7rem;align-items:flex-start;border:1px solid var(--linha);
+  background:var(--branco);border-radius:3px;padding:.65rem .7rem;margin-bottom:.45rem
+}
+.pilha .num{
+  counter-increment:ord;flex:none;width:1.5rem;height:1.5rem;border-radius:50%;
+  border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:var(--texto-3);margin-top:.1rem;background:var(--fundo-2)
+}
+.pilha .num::before{content:counter(ord)}
+.pilha .txt{flex:1;font-size:.93rem;line-height:1.45;color:var(--texto)}
+.pilha .setas{display:flex;flex-direction:column;gap:.2rem;flex:none}
+.pilha .setas button{
+  background:var(--branco);border:1px solid var(--linha);color:var(--texto-2);
+  border-radius:2px;width:1.9rem;height:1.3rem;cursor:pointer;font-size:.7rem;line-height:1;padding:0
+}
+.pilha .setas button:hover{background:var(--fundo-2)}
+.pilha .setas button:disabled{opacity:.3;cursor:not-allowed}
+
+/* calibragem */
+.calib{list-style:none;margin:0;padding:0}
+.calib li{border-bottom:1px solid var(--linha);padding:.8rem 0}
+.calib li:last-child{border-bottom:none}
+.calib .q{font-size:.95rem;margin-bottom:.5rem;color:var(--texto);font-weight:500}
+.faixa{display:flex;gap:.5rem;align-items:center}
+.faixa span{font-size:.8rem;color:var(--texto-3);flex:none}
+.calib .resultado{font-size:.85rem;margin-top:.45rem}
+.calib .dentro{color:var(--acerto);font-weight:600}
+.calib .fora{color:var(--falha);font-weight:600}
+.placar{
+  font-family:var(--serif);font-size:2.6rem;line-height:1;margin:0 0 .3rem;color:var(--texto);font-weight:600
+}
+
+/* cronômetro */
+.crono{
+  font-family:var(--serif);font-size:2.8rem;line-height:1;margin:0 0 .3rem;
+  font-variant-numeric:tabular-nums;color:var(--texto);font-weight:600
+}
+.crono.quente{color:var(--falha)}
+
+/* cartão final */
+.cartao{border:1px solid var(--linha);border-radius:3px;padding:1.1rem 1.2rem;background:var(--fundo-2)}
+.cartao ol{margin:0;padding-left:1.15rem}
+.cartao li{font-family:var(--serif);font-size:1.06rem;line-height:1.45;margin-bottom:.7rem;color:var(--texto)}
+.cartao li:last-child{margin-bottom:0}
+
+/* trilha */
+.trilha-item{border-top:1px solid var(--linha);padding:1.4rem 0}
+.trilha-item:first-of-type{border-top:none}
+.trilha-item h2{margin-bottom:.15rem}
+.trilha-passo{margin:.9rem 0 0}
+.trilha-passo .rot{font-size:.78rem;color:var(--texto-3);margin-bottom:.15rem;text-transform:uppercase}
+.trilha-passo p{margin:0;font-size:.95rem;color:var(--texto-2)}
+
+.aviso{
+  font-size:.88rem;color:var(--texto-3);border:1px dashed var(--linha);
+  border-radius:3px;padding:.7rem .8rem;margin:1.2rem 0 0;background:var(--fundo-2)
+}
+.modo-escolha{display:grid;gap:.6rem;margin:1.5rem 0 0}
+.modo-escolha button{
+  text-align:left;background:var(--branco);border:1px solid var(--linha);
+  border-radius:3px;padding:.9rem 1rem;color:var(--texto);cursor:pointer;font-family:var(--sans)
+}
+.modo-escolha button:hover{border-color:var(--sinal);background:var(--fundo-2)}
+.modo-escolha b{display:block;font-size:1rem;margin-bottom:.15rem;font-weight:600}
+.modo-escolha em{font-style:normal;font-size:.88rem;color:var(--texto-2)}
+.contagem{font-size:.88rem;color:var(--texto-3);font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="envelope">
+    <div class="barra">
+      <div class="marca" id="marca">5 Hábitos <span id="modoRotulo"></span></div>
+      <button class="icone" id="btnTrilha">Trilha</button>
+      <button class="icone" id="btnReiniciar">Recomeçar</button>
+    </div>
+  </div>
+  <div class="regua" id="regua"></div>
+</header>
+
+<main class="envelope" id="palco"></main>
+
+<script>
+"use strict";
+
+/* ---------- persistência tolerante a falha ---------- */
+const CHAVE = "cinco-habitos-v1";
+function salvar(){
+  try{ localStorage.setItem(CHAVE, JSON.stringify(estado)); }catch(e){}
+}
+function carregar(){
+  try{
+    const bruto = localStorage.getItem(CHAVE);
+    if(!bruto) return null;
+    return JSON.parse(bruto);
+  }catch(e){ return null; }
+}
+
+/* ---------- conteúdo ---------- */
+
+const CALIBRAGEM = [
+  {q:"Comprimento do rio Nilo, em quilômetros", v:6650, u:"km"},
+  {q:"Altitude do monte Everest, em metros", v:8849, u:"m"},
+  {q:"Distância média entre a Terra e a Lua, em quilômetros", v:384400, u:"km"},
+  {q:"Número de ossos no corpo humano adulto", v:206, u:""},
+  {q:"Ano de fundação da Petrobras", v:1953, u:""},
+  {q:"Ano de lançamento do primeiro iPhone", v:2007, u:""},
+  {q:"Número de países membros da ONU", v:193, u:""},
+  {q:"Área do Brasil, em milhões de quilômetros quadrados", v:8.51, u:"mi km²"},
+  {q:"Velocidade da luz no vácuo, em quilômetros por segundo", v:299792, u:"km/s"},
+  {q:"População do Japão em 2023, em milhões de pessoas", v:124, u:"mi"}
+];
+
+const EVIDENCIAS = [
+  {id:"e1", favor:true,  t:"A fábrica 2 tem o maior custo de manutenção por hora de máquina da rede, 40% acima da média."},
+  {id:"e2", favor:true,  t:"Nos últimos 18 meses, 22% das ordens preventivas foram executadas sem que nenhuma anomalia fosse encontrada."},
+  {id:"e3", favor:false, t:"As duas paradas não planejadas mais caras dos últimos cinco anos aconteceram na fábrica 2, com perda de 3,1 milhões cada."},
+  {id:"e4", favor:true,  t:"Um piloto de três meses na fábrica 4 reduziu o custo de manutenção em 18% sem aumento de falhas."},
+  {id:"e5", favor:false, t:"A fábrica 2 opera com equipamento em média sete anos mais velho que o da fábrica 4, onde o piloto foi feito."},
+  {id:"e6", favor:true,  t:"O corte libera 4,2 milhões no orçamento do ano, exatamente o valor do projeto de automação já aprovado."}
+];
+
+const PASSOS = [
+  { tipo:"abertura" },
+
+  { tipo:"caso", n:1, id:"c1",
+    nome:"A Pergunta do Diretor",
+    historia:[
+      "São 7h40 de uma terça. O diretor comercial manda uma mensagem para você, com cópia para o seu gestor.",
+      "Nosso site converte em 4%. O mercado converte em 12%. Preciso de um plano para triplicar a conversão até o fim do trimestre. Consegue até sexta?",
+      "Você tem a quinta inteira livre e acesso aos dados de tráfego, pedidos e receita dos últimos dois anos."
+    ],
+    pergunta:"Escreva o que você faz primeiro, e por quê.",
+    ajuda:"Três ou quatro linhas bastam. Não existe resposta certa visível aqui: escreva o que faria de verdade na quinta de manhã.",
+    positivos:[
+      "Perguntei se os 4% e os 12% medem a mesma coisa",
+      "Perguntei qual decisão o diretor vai tomar com o resultado",
+      "Perguntei que critério define sucesso, e até quando"
+    ],
+    armadilhas:[
+      "Aceitei a meta de triplicar como dada",
+      "Comecei a listar ações para aumentar a conversão",
+      "Planejei entregar o plano até sexta, como pedido"
+    ],
+    gabarito:[
+      "O pedido que chegou não é o problema a resolver. É a hipótese que alguém já formou, escrita em forma de tarefa.",
+      "Dois problemas estão escondidos ali. O primeiro é de comparação: a média do setor mistura lojas com catálogo, ticket e mix de tráfego completamente diferentes do seu. Se metade do seu tráfego vem de campanhas de topo de funil e a do benchmark vem de busca por marca, os dois números não são comparáveis, e a diferença de 8 pontos não significa nada.",
+      "O segundo é de decisão. Ninguém pede um plano de conversão às 7h40 de terça sem ter uma decisão pendente atrás. Provavelmente é onde alocar o orçamento de marketing do trimestre, ou se mantém o investimento no site. Resolver o pedido literal e errar a decisão é o modo mais comum de um analista gastar três semanas e não mudar nada."
+    ],
+    chave:"O pedido que chega não é o problema. É a primeira hipótese de alguém.",
+    metodo:"Problem Definition",
+    autor:"Conn & McLean, Bulletproof Problem Solving",
+    saibamais:"Na hora em que alguém chega com um pedido, sempre há uma decisão por trás que ninguém nomeou. Sua primeira coisa não é obedecer o pedido, é descobrir essa decisão. É só isso: pergunte qual decisão vai ser tomada, por quem decide, e com que critério aquela decisão vai ser tomada. Quando você conseguir responder essas três perguntas, você deixa de estar resolvendo o que o cara pediu e passa a estar resolvendo o que o cara precisa."
+  },
+
+  { tipo:"acerto", id:"a1",
+    intro:"Um rápido antes de seguir.",
+    pergunta:"Sua gestora pede: me monta um comparativo de custo de frete com os três concorrentes. Qual é a primeira coisa a perguntar?",
+    opcoes:[
+      "Quais três concorrentes ela quer no comparativo",
+      "Que decisão ela vai tomar depois de ver o comparativo",
+      "Se os dados de frete dos concorrentes são públicos",
+      "Até quando ela precisa do material"
+    ],
+    certa:1,
+    nota:"As outras três importam, e você vai perguntar todas. Mas só a segunda muda o que você faz na quinta de manhã."
+  },
+
+  { tipo:"caso", n:2, id:"c2",
+    nome:"O Relatório de Três Anos",
+    historia:[
+      "Você recebe o consolidado do grupo. A margem operacional caiu de 16,4% para 11,9% em três anos.",
+      "Na reunião de amanhã, o CFO quer saber o que aconteceu. Antes disso, você abre o detalhe por unidade de negócio e encontra o seguinte."
+    ],
+    tabela:true,
+    pergunta:"Nenhuma das quatro unidades piorou. Todas melhoraram. Ainda assim o grupo piorou 4,5 pontos. Escreva como isso é possível.",
+    ajuda:"A calculadora abaixo está ali se você quiser testar hipóteses. Não é obrigatória.",
+    calculadora:true,
+    positivos:[
+      "Reparei que a participação de cada unidade na receita mudou muito",
+      "Testei o efeito da mudança de mix nas contas",
+      "Concluí que o grupo piorou por composição, não por desempenho"
+    ],
+    armadilhas:[
+      "Procurei um custo novo fora das unidades, tipo corporativo ou financeiro",
+      "Suspeitei de erro de cálculo ou de critério contábil",
+      "Concluí que alguma unidade estava mascarando o resultado"
+    ],
+    gabarito:[
+      "Todas as unidades melhoraram e o todo piorou, ao mesmo tempo, sem contradição e sem ninguém mentindo.",
+      "Em 2023, Distribuição era 20% da receita. Em 2026, é 58%. É a unidade de menor margem da casa, e cresceu quatro vezes mais rápido que as outras. O grupo não ficou pior em nada: ficou muito mais parecido com a sua pior margem.",
+      "O teste que prova isso: aplique as margens de 2026 sobre a composição de receita de 2023. A margem do grupo seria 17,2%, acima dos 16,4% do ponto de partida. Ou seja, por desempenho o grupo melhorou. Por composição, piorou.",
+      "Isso muda a conversa com o CFO por inteiro. Se ele acha que é problema de eficiência, vai cortar custo nas unidades erradas. O que está na mesa, na verdade, é uma decisão de portfólio."
+    ],
+    chave:"O desempenho de um sistema não é a soma do desempenho das partes.",
+    metodo:"Simpson's Paradox / Análise de Composição",
+    autor:"Donella Meadows, Thinking in Systems",
+    saibamais:"Sempre que você vê um padrão numa coisa agregada, pergunte se a composição mudou. Se mudou de peso, as partes podem estar todas melhorando e o todo piorando, ou vice-versa. Isso não é erro, é a realidade de como sistemas funcionam. Quando você conseguir separar efeito de desempenho de efeito de composição, você para de procurar o culpado errado dentro das unidades."
+  },
+
+  { tipo:"acerto", id:"a2",
+    intro:"Mais um, e a coisa aperta.",
+    pergunta:"A nota média de satisfação da empresa caiu de 8,2 para 7,6. Cada uma das cinco regiões subiu a própria nota. Qual explicação você investiga primeiro?",
+    opcoes:[
+      "Alguém mudou a metodologia da pesquisa",
+      "A região com pior nota passou a responder muito mais",
+      "Existe uma sexta região que ninguém está reportando",
+      "A amostra deste ano é pequena demais"
+    ],
+    certa:1,
+    nota:"Todas são checagens legítimas. Mas quando as partes sobem e o todo cai, a mudança de peso é a primeira suspeita, não a última."
+  },
+
+  { tipo:"calibragem", n:3, id:"c3",
+    nome:"As Dez Perguntas",
+    historia:[
+      "Dez perguntas de conhecimento geral. Você não precisa saber nenhuma resposta.",
+      "Para cada uma, dê um intervalo, um valor mínimo e um máximo, com 90% de confiança. Ou seja: intervalos largos o suficiente para que você erre, no máximo, uma vez em dez.",
+      "Intervalo largo demais é permitido. Não há prêmio por ser preciso."
+    ],
+    chave:"Confiança e acerto são coisas diferentes, e quase ninguém sabe o tamanho da própria ignorância.",
+    metodo:"Calibragem de Intervalos",
+    autor:"Philip Tetlock & Dan Gardner, Superforecasting",
+    saibamais:"Você vai errar intervalos por uns cinco anos, aprendendo a largueza certa. Mas assim que aprender, suas previsões ficam 20% mais úteis porque agora têm incerteza explícita. Quando você entregar 42 milhões de receita, dizer que é 42 é uma aposta. Dizer que é entre 36 e 49 com 80% de confiança é informação."
+  },
+
+  { tipo:"acerto", id:"a3",
+    intro:"Um respiro.",
+    pergunta:"Você entrega uma projeção de receita de 42 milhões para o ano que vem. Qual formato dá mais informação a quem decide?",
+    opcoes:[
+      "42 milhões",
+      "42 milhões, com metodologia detalhada em anexo",
+      "Entre 36 e 49 milhões, com 80% de confiança",
+      "42 milhões, podendo variar para mais ou para menos"
+    ],
+    certa:2,
+    nota:"Um intervalo declarado com a confiança junto é auditável. Podendo variar não compromete ninguém com nada."
+  },
+
+  { tipo:"ordenacao", n:4, id:"c4",
+    nome:"A Análise de Sexta",
+    historia:[
+      "Você vai recomendar ao comitê o corte de 30% no orçamento de manutenção preventiva da fábrica 2.",
+      "Você tem seis evidências. Qual é a ordem que você investiga para testar se a recomendação é válida?"
+    ],
+    pergunta:"Ordene as seis evidências em qual sequência você investigaria para verificar se a recomendação aguenta. Depois escreva: qual é a evidência mais perigosa para sua tese, e por quê?",
+    positivos:[
+      "Comecei pela evidência que mais derrubaria a recomendação",
+      "Pensei em qual dado testaria a suposição antes de outras",
+      "Identifiquei qual informação muda minha decisão se for falsa"
+    ],
+    armadilhas:[
+      "Ordenei as evidências que sustentam a recomendação primeiro",
+      "Deixei a mais perigosa para o final",
+      "Não consegui nomear qual seria a mais perigosa"
+    ],
+    gabarito:[
+      "A maioria das pessoas coloca as seis evidências em ordem de quanto sustentam a recomendação. Mas a pergunta é qual você investigaria primeiro para verificar se a recomendação é válida.",
+      "São duas coisas completamente diferentes. Verificar significa testar o que derrubaria tudo. O que derrubaria tudo aqui não é nenhuma das duas evidências que contrariam, e sim a evidência que diz que o equipamento é sete anos mais velho.",
+      "Por quê? Porque você fez um piloto na fábrica 4 (novo) que funcionou. Mas se aplicar em equipamento sete anos mais velho, quem te garante que funciona? Ninguém. Essa é a suposição mais perigosa. Qualquer uma das outras cai e você não perde a recomendação. Essa cai e tudo que você preparou fica obsoleto.",
+      "A ordem que testa: coloque primeiro a coisa que mataria tudo se for verdade. Depois as que modificariam a recomendação. Depois as que a sustentam."
+    ],
+    chave:"Pensar é descobrir o que te faria errar. Não é acumular evidências que sustentam.",
+    metodo:"Modus Tollens / Falsabilidade",
+    autor:"Karl Popper, The Logic of Scientific Discovery",
+    saibamais:"Falsabilidade é simples: uma tese é científica se pode ser falsa. Se você não consegue nomear o que a falsearia, você não tem tese, tem religião. Toda recomendação tem pelo menos um dado que a mata. Encontre aquele dado primeiro. Se ele for verdadeiro, você muda de recomendação. Se for falso, aí sim você segue adiante."
+  },
+
+  { tipo:"acerto", id:"a4",
+    intro:"Último antes do fim.",
+    pergunta:"Você encontrou um dado que enfraquece sua recomendação, e ninguém mais reparou nele. O que fazer?",
+    opcoes:[
+      "Deixar fora, já que a conclusão continua válida",
+      "Colocar no anexo, para constar",
+      "Colocar na análise cedo, junto com o que você fez para testá-lo",
+      "Mencionar no fim, se alguém perguntar"
+    ],
+    certa:2,
+    nota:"A diferença entre um analista e um consultor está quase inteira nessa escolha."
+  },
+
+  { tipo:"pitch", n:5, id:"c5",
+    nome:"O Elevador do 14º Andar",
+    historia:[
+      "Três semanas de trabalho. Você analisou a expansão da rede de academias: 12 unidades novas estavam previstas para o ano.",
+      "Sua conclusão é que só 4 das 12 se pagam em três anos. Das outras 8, seis ficam melhor como franquia e duas deveriam sair do plano. A margem do plano original é 6,1%. Com a mudança, 11,4%.",
+      "Você entra no elevador no térreo. A CEO está lá dentro, sozinha, e aperta o 14. Ela olha para você e diz: oi, como está aquela análise das novas unidades?",
+      "Você tem quarenta segundos."
+    ],
+    pergunta:"O cronômetro começa quando você tocar em Começar. O campo trava aos quarenta segundos.",
+    positivos:[
+      "Minha primeira frase já continha a recomendação",
+      "Dei um número que sustenta, não todos os que tenho",
+      "Terminei dizendo o que preciso que ela decida"
+    ],
+    armadilhas:[
+      "Comecei contando o que analisei ou como analisei",
+      "Comecei pelo contexto, para ela entender",
+      "O tempo acabou antes de eu chegar na recomendação",
+      "Pedi uma reunião para explicar direito"
+    ],
+    gabarito:[
+      "Quarenta segundos é o tempo real que você tem com quem decide, e quase ninguém usa para dizer a coisa.",
+      "A ordem natural de quem trabalhou três semanas é cronológica: eu peguei os dados, cruzei com a base de sócios, modelei três cenários, e aí cheguei em. O problema é que essa ordem coloca a única informação que interessa no minuto em que a porta abre.",
+      "A versão que funciona cabe em duas frases: Das 12 unidades, só 4 se pagam em três anos. Recomendo abrir essas 4, converter 6 em franquia e tirar 2 do plano: isso leva a margem de 6,1% para 11,4%. Preciso da sua decisão sobre as 6 franquias até o dia 20, senão perdemos a janela de obra.",
+      "Contar o caminho não aumenta a credibilidade, adia a conclusão. O caminho existe para ser perguntado, e ela vai perguntar, se a conclusão valer a pergunta."
+    ],
+    chave:"Comece pela resposta. O caminho é o que você responde quando perguntam.",
+    metodo:"Pyramid Principle",
+    autor:"Barbara Minto, The Pyramid Principle",
+    saibamais:"A estrutura de uma recomendação tem um jeito: conclusão primeiro, depois três razões que sustentam, depois os dados. A gente aprende a história no jeito errado: dados, depois razões, depois conclusão. Mas quem está ouvindo não tem três semanas. Inverta: conclusão, razões, dados. Se a pessoa não tem tempo, ela ouve a coisa. Se tem tempo e quer entender, ela pergunta e você vai descendo."
+  },
+
+  { tipo:"ferramenta" },
+  { tipo:"cartao" }
+];
+
+const TRILHAS = [
+  {
+    t:"Separar o Pedido do Problema",
+    d:"O pedido que chega é sempre a hipótese que alguém já formou. Antes de executar, você precisa reconstruir a decisão que está por trás.",
+    metodo:"Problem Definition",
+    autor:"Conn & McLean, Bulletproof Problem Solving",
+    p:[
+      ["O que saber fazer","Transformar qualquer pedido em três perguntas: que decisão será tomada, por quem, e com que critério. Reconhecer quando dois números não são comparáveis."],
+      ["Como praticar","Nos próximos dez pedidos que você receber, escreva a decisão por trás antes de abrir qualquer planilha. Confirme com quem pediu. Você vai errar as primeiras."],
+      ["Sinal de chegada","Alguém pede um material e você devolve uma pergunta, e a pessoa muda o que pediu."]
+    ]
+  },
+  {
+    t:"Ver o Sistema, Não só as Partes",
+    d:"Decomposição bem feita é o músculo central da análise. Mas um todo pode piorar com todas as partes melhorando.",
+    metodo:"Simpson's Paradox / Composição",
+    autor:"Donella Meadows, Thinking in Systems",
+    p:[
+      ["O que saber fazer","Decompor um número em partes que não se sobrepõem e não deixam buraco. E, depois, testar sempre o efeito de composição: mudou o peso de alguma parte?"],
+      ["Como praticar","Pegue qualquer indicador consolidado da sua área e refaça com a composição de dois anos atrás. A diferença entre os dois números é o efeito de mix."],
+      ["Sinal de chegada","Diante de uma variação agregada, sua primeira pergunta é sobre peso, não sobre desempenho."]
+    ]
+  },
+  {
+    t:"Saber o Tamanho da Própria Ignorância",
+    d:"Estimativa pontual esconde incerteza. Intervalo declarado com confiança expõe o que você sabe e o que está chutando.",
+    metodo:"Calibragem de Intervalos",
+    autor:"Philip Tetlock & Dan Gardner, Superforecasting",
+    p:[
+      ["O que saber fazer","Dar qualquer número na forma de intervalo, com o grau de confiança explícito, e acertar a largura do intervalo com o tempo."],
+      ["Como praticar","Anote cinco previsões por semana com intervalo e confiança. Volte depois de um mês e conte quantas caíram dentro. Se acertar mais que o declarado, seus intervalos estão largos demais."],
+      ["Sinal de chegada","Você começa a ficar desconfortável com números apresentados sem faixa, inclusive os seus."]
+    ]
+  },
+  {
+    t:"Procurar o Que Derruba a Sua Tese",
+    d:"Pensar é descobrir o que te faria errar. Não é acumular evidências que sustentam.",
+    metodo:"Modus Tollens / Falsabilidade",
+    autor:"Karl Popper, The Logic of Scientific Discovery",
+    p:[
+      ["O que saber fazer","Listar, antes de recomendar, as três coisas que derrubariam a recomendação. Investigar a mais perigosa delas primeiro."],
+      ["Como praticar","Em toda análise, escreva a seção o que me faria mudar de ideia antes de escrever a conclusão. Se não conseguir preencher, você não testou nada."],
+      ["Sinal de chegada","Você consegue nomear qual dado único derrubaria tudo, e sabe por quê."]
+    ]
+  },
+  {
+    t:"Começar pela Resposta",
+    d:"Quem decide tem menos tempo do que você imagina. Contar o caminho antes da conclusão gasta o tempo dele com o seu processo.",
+    metodo:"Pyramid Principle",
+    autor:"Barbara Minto, The Pyramid Principle",
+    p:[
+      ["O que saber fazer","Abrir por recomendação, sustentar com um número, fechar com o que você precisa que a pessoa decida e até quando."],
+      ["Como praticar","Reescreva o primeiro parágrafo dos seus últimos cinco e-mails de análise. Se a primeira frase não contiver a recomendação, refaça."],
+      ["Sinal de chegada","Alguém interrompe você para perguntar o método. Isso quer dizer que a conclusão chegou."]
+    ]
+  }
+];
+
+/* ---------- estado ---------- */
+let estado = {
+  modo:null,
+  i:0,
+  fase:"escrever",
+  respostas:{},
+  marcados:{},
+  ordem:EVIDENCIAS.map(e=>e.id),
+  calib:{},
+  calibFeito:false,
+  acertos:{},
+  ferramenta:{quem:"",oque:"",quando:"",criterio:""},
+  travas:{},
+  telaTrilha:false
+};
+
+const guardado = carregar();
+if(guardado && guardado.modo){ estado = Object.assign(estado, guardado); }
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const palco = $("#palco");
+
+function esc(t){
+  return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function fmt(n){
+  return n.toLocaleString("pt-BR",{maximumFractionDigits:2});
+}
+function irPara(i){
+  estado.i = i;
+  estado.fase = "escrever";
+  estado.telaTrilha = false;
+  salvar();
+  window.scrollTo(0,0);
+  render();
+}
+function proximo(){ irPara(Math.min(estado.i+1, PASSOS.length-1)); }
+
+/* trava de ritmo do modo sala, ancorada no horário de início do passo */
+let timerTrava = null;
+let travaAtiva = false;
+
+function restante(id, segundos){
+  if(!estado.travas) estado.travas = {};
+  if(!estado.travas[id]){ estado.travas[id] = Date.now(); salvar(); }
+  const passou = Math.floor((Date.now() - estado.travas[id]) / 1000);
+  return Math.max(0, segundos - passou);
+}
+
+function travar(btn, id, segundos, textoBase, liberar){
+  clearInterval(timerTrava);
+  travaAtiva = false;
+  if(estado.modo !== "sala"){ return; }
+  let resta = restante(id, segundos);
+  if(resta <= 0){ return; }
+
+  travaAtiva = true;
+  btn.disabled = true;
+  const marca = document.createElement("span");
+  marca.className = "contagem";
+  btn.parentNode.appendChild(marca);
+
+  const tick = ()=>{
+    marca.textContent = textoBase + " " + resta + "s";
+    if(resta <= 0){
+      clearInterval(timerTrava);
+      travaAtiva = false;
+      marca.remove();
+      if(liberar) liberar();
+      return;
+    }
+    resta--;
+  };
+  tick();
+  timerTrava = setInterval(tick, 1000);
+}
+
+/* ---------- régua ---------- */
+function pintarRegua(){
+  const marcos = PASSOS.map((p,idx)=>({p,idx})).filter(o=>["caso","calibragem","ordenacao","pitch"].includes(o.p.tipo));
+  const r = $("#regua");
+  r.innerHTML = marcos.map(o=>{
+    if(estado.i > o.idx) return '<i class="feito"></i>';
+    if(estado.i === o.idx) return '<i class="agora"></i>';
+    return "<i></i>";
+  }).join("");
+  $("#modoRotulo").textContent = estado.modo ? (estado.modo==="sala" ? "· sala" : "· solo") : "";
+}
+
+/* ---------- render principal ---------- */
+function render(){
+  clearInterval(timerTrava);
+  travaAtiva = false;
+  pintarRegua();
+  if(estado.telaTrilha){ return telaTrilha(); }
+  const passo = PASSOS[estado.i];
+  switch(passo.tipo){
+    case "abertura":   return telaAbertura();
+    case "caso":       return telaCaso(passo);
+    case "acerto":     return telaAcerto(passo);
+    case "calibragem": return telaCalibragem(passo);
+    case "ordenacao":  return telaOrdenacao(passo);
+    case "pitch":      return telaPitch(passo);
+    case "ferramenta": return telaFerramenta();
+    case "cartao":     return telaCartao();
+  }
+}
+
+/* ---------- abertura ---------- */
+function telaAbertura(){
+  palco.innerHTML = `
+  <div class="passo">
+    <h1>Você vai errar cinco vezes.</h1>
+    <p>Esse é o desenho, não um acidente. São cinco situações que analistas experientes também erram na primeira vez. Errar antes de saber é o que faz a coisa ficar.</p>
+    <p class="discreto">No fim você não sai com cinco erros. Sai com cinco perguntas que cabem no bolso e servem para o resto da carreira.</p>
+    <h3>Como funciona</h3>
+    <p class="discreto">Em cada situação você escreve sua resposta antes de ver qualquer coisa. Depois marca, numa lista, o que a sua resposta continha. Só então aparece o que era esperado. A ordem importa: ver antes de escrever não ensina nada.</p>
+    <p class="discreto">Leva de 50 a 70 minutos. Dá para parar no meio, o progresso fica salvo neste aparelho.</p>
+    <div class="modo-escolha">
+      <button data-modo="solo"><b>Sozinho</b><em>Você controla o ritmo. Avança quando quiser.</em></button>
+      <button data-modo="sala"><b>Em sala</b><em>Trava de tempo antes de cada revelação, para o grupo não se desencontrar, e pausas de discussão.</em></button>
+    </div>
+    <div class="aviso">Precisa de nada além desta página: sem papel, sem calculadora, sem planilha. As ferramentas necessárias aparecem quando forem necessárias.</div>
+  </div>`;
+  palco.querySelectorAll("[data-modo]").forEach(b=>{
+    b.onclick = ()=>{ estado.modo = b.dataset.modo; irPara(1); };
+  });
+}
+
+/* ---------- blocos reutilizáveis ---------- */
+function blocoRubrica(passo){
+  const itens = [];
+  passo.positivos.forEach((t,k)=>itens.push({k:"p"+k, t, bom:true}));
+  passo.armadilhas.forEach((t,k)=>itens.push({k:"a"+k, t, bom:false}));
+  const marc = estado.marcados[passo.id] || {};
+  return `
+    <p class="pergunta">Antes de ver qualquer coisa: o que a sua resposta continha?</p>
+    <p class="discreto">Marque com honestidade. Ninguém além de você vê isso, e a lista é o que transforma a leitura do gabarito em aprendizado.</p>
+    <ul class="rubrica">
+      ${itens.map(it=>`
+        <li><label class="${marc[it.k]?"marcado":""}">
+          <input type="checkbox" data-k="${it.k}" ${marc[it.k]?"checked":""}>
+          <span>${esc(it.t)}</span>
+        </label></li>`).join("")}
+    </ul>
+    <div class="acoes"><button class="principal" id="verVeredito">Ver o que era esperado</button></div>`;
+}
+
+function contarRubrica(passo){
+  const marc = estado.marcados[passo.id] || {};
+  let bons = 0, ruins = 0;
+  passo.positivos.forEach((_,k)=>{ if(marc["p"+k]) bons++; });
+  passo.armadilhas.forEach((_,k)=>{ if(marc["a"+k]) ruins++; });
+  return {bons, ruins};
+}
+
+function blocoVeredito(passo){
+  const {bons, ruins} = contarRubrica(passo);
+  let titulo, texto, bom = false;
+  if(ruins > 0 && bons === 0){
+    titulo = "Você caiu inteiro.";
+    texto = "É o resultado mais comum aqui, e o mais útil. A explicação abaixo vale mais para você do que para quem escapou.";
+  } else if(ruins > 0){
+    titulo = "Você viu parte, e caiu no resto.";
+    texto = "Acontece com quem já tem alguma prática: o instinto certo aparece, mas o hábito antigo vem junto.";
+  } else if(bons >= 2){
+    titulo = "Você escapou.";
+    texto = "Confira abaixo se escapou pelo motivo certo. Acertar por outro caminho conta menos do que parece.";
+    bom = true;
+  } else {
+    titulo = "Resposta curta demais para saber.";
+    texto = "Você não marcou nem armadilha nem sinal de rigor. Vale reler o que escreveu depois da explicação.";
+  }
+  return `<div class="veredito ${bom?"bom":""}"><strong>${titulo}</strong><p>${texto}</p></div>`;
+}
+
+function blocoGabarito(passo){
+  let saiba = "";
+  if(passo.metodo){
+    saiba = `<div class="saibamais">
+      <div class="metodo">${esc(passo.metodo)}</div>
+      <div class="autor">${esc(passo.autor)}</div>
+      <p>${esc(passo.saibamais)}</p>
+    </div>`;
+  }
+  return `
+    <div class="gabarito">
+      <div class="rotulo">O que era esperado</div>
+      <div class="corpo">${passo.gabarito.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+      <div class="chave">${esc(passo.chave)}</div>
+      ${saiba}
+    </div>
+    ${estado.modo==="sala" ? `<div class="aviso">Pausa de discussão: dois minutos com quem está ao lado. Quem escapou explica por quê.</div>` : ""}
+    <div class="acoes"><button class="principal" id="seguir">Continuar</button></div>`;
+}
+
+function ligarRubrica(passo){
+  palco.querySelectorAll(".rubrica input").forEach(cb=>{
+    cb.onchange = ()=>{
+      if(!estado.marcados[passo.id]) estado.marcados[passo.id] = {};
+      estado.marcados[passo.id][cb.dataset.k] = cb.checked;
+      cb.closest("label").classList.toggle("marcado", cb.checked);
+      salvar();
+    };
+  });
+  const b = $("#verVeredito");
+  if(b) b.onclick = ()=>{ estado.fase = "revelar"; salvar(); window.scrollTo(0,0); render(); };
+}
+function ligarSeguir(){
+  const b = $("#seguir");
+  if(b) b.onclick = proximo;
+}
+
+/* ---------- caso escrito ---------- */
+function telaCaso(passo){
+  const cabeca = `
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+    ${passo.tabela ? tabelaMargem() : ""}`;
+
+  if(estado.fase === "escrever"){
+    const calcHtml = passo.calculadora ? calculadoraMix() : "";
+    palco.innerHTML = `<div class="passo">${cabeca}
+      ${calcHtml}
+      <p class="pergunta">${esc(passo.pergunta)}</p>
+      <p class="miudo">${esc(passo.ajuda||"")}</p>
+      <textarea id="resp" placeholder="Escreva aqui.">${esc(estado.respostas[passo.id]||"")}</textarea>
+      <div class="acoes"><button class="principal" id="travar" disabled>Travar minha resposta</button></div>
+      <p class="miudo" style="margin-top:.6rem">Depois de travar não dá para editar. É de propósito.</p>
+    </div>`;
+    if(passo.calculadora) ligarCalculadora();
+    const ta = $("#resp"), bt = $("#travar");
+    const checa = ()=>{ bt.disabled = travaAtiva || ta.value.trim().length < 25; };
+    ta.oninput = ()=>{ estado.respostas[passo.id] = ta.value; salvar(); checa(); };
+    bt.onclick = ()=>{ estado.fase="rubrica"; salvar(); window.scrollTo(0,0); render(); };
+    if(estado.modo === "sala"){
+      const bloqueio = document.createElement("div");
+      bloqueio.className = "aviso";
+      bloqueio.textContent = "Modo sala: o botão de travar libera depois de 90 segundos, para o grupo escrever junto.";
+      palco.querySelector(".passo").appendChild(bloqueio);
+      travar(bt, passo.id, 90, "libera em", checa);
+    }
+    checa();
+    return;
+  }
+
+  const suaResposta = `
+    <div class="ferramenta"><div class="titulo">O que você escreveu</div>
+      <div style="font-size:.95rem;line-height:1.5;white-space:pre-wrap;color:var(--texto)">${esc(estado.respostas[passo.id]||"")}</div>
+    </div>`;
+
+  if(estado.fase === "rubrica"){
+    palco.innerHTML = `<div class="passo">
+      <div class="etiqueta">Situação ${passo.n} de 5</div>
+      <h1>${esc(passo.nome)}</h1>
+      ${suaResposta}${blocoRubrica(passo)}</div>`;
+    ligarRubrica(passo);
+    return;
+  }
+
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    ${blocoVeredito(passo)}${suaResposta}${blocoGabarito(passo)}</div>`;
+  ligarSeguir();
+}
+
+/* ---------- tabela e calculadora de mix ---------- */
+const UNIDADES = [
+  {n:"Serviços",     r23:250, m23:28,   r26:260,  m26:29},
+  {n:"Software",     r23:150, m23:24,   r26:160,  m26:25},
+  {n:"Distribuição", r23:200, m23:5,    r26:1150, m26:6},
+  {n:"Indústria",    r23:400, m23:12,   r26:420,  m26:12.5}
+];
+function tabelaMargem(){
+  const t23 = UNIDADES.reduce((a,u)=>a+u.r23,0);
+  const t26 = UNIDADES.reduce((a,u)=>a+u.r26,0);
+  const l23 = UNIDADES.reduce((a,u)=>a+u.r23*u.m23/100,0);
+  const l26 = UNIDADES.reduce((a,u)=>a+u.r26*u.m26/100,0);
+  return `
+  <table>
+    <thead><tr><th>Unidade</th><th>Receita 2023</th><th>Margem 2023</th><th>Receita 2026</th><th>Margem 2026</th></tr></thead>
+    <tbody>
+      ${UNIDADES.map(u=>`<tr>
+        <td>${u.n}</td><td>${fmt(u.r23)}</td><td>${fmt(u.m23)}%</td>
+        <td>${fmt(u.r26)}</td><td>${fmt(u.m26)}%</td></tr>`).join("")}
+    </tbody>
+    <tfoot><tr>
+      <td>Grupo</td><td>${fmt(t23)}</td><td>${(l23/t23*100).toFixed(1)}%</td>
+      <td>${fmt(t26)}</td><td>${(l26/t26*100).toFixed(1)}%</td>
+    </tr></tfoot>
+  </table>`;
+}
+function calculadoraMix(){
+  return `
+  <div class="ferramenta">
+    <div class="titulo">Calculadora de composição (opcional)</div>
+    <p class="miudo" style="margin:0 0 .7rem">Use se quiser testar hipóteses sobre como a composição de receita afeta a margem do grupo.</p>
+    <div class="acoes" style="margin-top:0">
+      <button class="secundaria" data-calc="a">Margens 2026 com receita de 2026</button>
+      <button class="secundaria" data-calc="b">Margens 2026 com composição de 2023</button>
+      <button class="secundaria" data-calc="c">Margens 2023 com composição de 2026</button>
+    </div>
+    <div class="saida" id="saidaCalc"></div>
+    <p class="aviso-calc">A calculadora não é obrigatória. Você consegue responder a pergunta só pela tabela.</p>
+  </div>`;
+}
+function ligarCalculadora(){
+  const pesos = (chave)=>{
+    const tot = UNIDADES.reduce((a,u)=>a+u[chave],0);
+    return UNIDADES.map(u=>u[chave]/tot);
+  };
+  const media = (w, mchave)=> UNIDADES.reduce((a,u,k)=>a+w[k]*u[mchave],0);
+  palco.querySelectorAll("[data-calc]").forEach(b=>{
+    b.onclick = ()=>{
+      const s = $("#saidaCalc");
+      if(b.dataset.calc==="a") s.textContent = "Margem do grupo: " + media(pesos("r26"),"m26").toFixed(1) + "%  (o resultado real de 2026)";
+      if(b.dataset.calc==="b") s.textContent = "Margem do grupo: " + media(pesos("r23"),"m26").toFixed(1) + "%";
+      if(b.dataset.calc==="c") s.textContent = "Margem do grupo: " + media(pesos("r26"),"m23").toFixed(1) + "%";
+    };
+  });
+}
+
+/* ---------- micro acerto ---------- */
+function telaAcerto(passo){
+  const escolhido = estado.acertos[passo.id];
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">${esc(passo.intro)}</div>
+    <h2>${esc(passo.pergunta)}</h2>
+    <ul class="rubrica" style="margin-top:1rem">
+      ${passo.opcoes.map((o,k)=>`
+        <li><label class="${escolhido===k?"marcado":""}">
+          <input type="radio" name="op" value="${k}" ${escolhido===k?"checked":""} ${escolhido!=null?"disabled":""}>
+          <span>${esc(o)}</span>
+        </label></li>`).join("")}
+    </ul>
+    <div id="retorno"></div>
+  </div>`;
+  const mostrar = ()=>{
+    const k = estado.acertos[passo.id];
+    const certo = k === passo.certa;
+    $("#retorno").innerHTML = `
+      <div class="veredito ${certo?"bom":""}" style="margin-top:1.2rem">
+        <strong>${certo?"Isso.":"Não é essa."}</strong>
+        <p>${certo ? esc(passo.nota) : "A resposta é: " + esc(passo.opcoes[passo.certa]) + ". " + esc(passo.nota)}</p>
+      </div>
+      <div class="acoes"><button class="principal" id="seguir">Continuar</button></div>`;
+    ligarSeguir();
+  };
+  if(escolhido != null){ mostrar(); return; }
+  palco.querySelectorAll("input[name=op]").forEach(r=>{
+    r.onchange = ()=>{
+      estado.acertos[passo.id] = Number(r.value);
+      salvar();
+      palco.querySelectorAll("input[name=op]").forEach(x=>x.disabled=true);
+      r.closest("label").classList.add("marcado");
+      mostrar();
+    };
+  });
+}
+
+/* ---------- calibragem ---------- */
+function telaCalibragem(passo){
+  if(!estado.calibFeito){
+    palco.innerHTML = `<div class="passo">
+      <div class="etiqueta">Situação ${passo.n} de 5</div>
+      <h1>${esc(passo.nome)}</h1>
+      <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+      <ul class="calib">
+        ${CALIBRAGEM.map((c,k)=>{
+          const g = estado.calib[k]||{};
+          return `<li>
+            <div class="q">${k+1}. ${esc(c.q)}</div>
+            <div class="faixa">
+              <span>mín</span><input type="number" inputmode="decimal" data-k="${k}" data-lado="min" value="${g.min??""}">
+              <span>máx</span><input type="number" inputmode="decimal" data-k="${k}" data-lado="max" value="${g.max??""}">
+            </div>
+          </li>`;
+        }).join("")}
+      </ul>
+      <div class="acoes"><button class="principal" id="corrigir" disabled>Corrigir os dez</button></div>
+    </div>`;
+    const bt = $("#corrigir");
+    const checa = ()=>{
+      const ok = CALIBRAGEM.every((_,k)=>{
+        const g = estado.calib[k];
+        return g && g.min !== "" && g.max !== "" && g.min != null && g.max != null;
+      });
+      bt.disabled = !ok;
+    };
+    palco.querySelectorAll(".calib input").forEach(inp=>{
+      inp.oninput = ()=>{
+        const k = inp.dataset.k;
+        if(!estado.calib[k]) estado.calib[k] = {};
+        estado.calib[k][inp.dataset.lado] = inp.value === "" ? "" : Number(inp.value);
+        salvar(); checa();
+      };
+    });
+    checa();
+    bt.onclick = ()=>{ estado.calibFeito = true; salvar(); window.scrollTo(0,0); render(); };
+    return;
+  }
+
+  let dentro = 0;
+  const linhas = CALIBRAGEM.map((c,k)=>{
+    const g = estado.calib[k]||{};
+    const lo = Math.min(g.min,g.max), hi = Math.max(g.min,g.max);
+    const ok = c.v >= lo && c.v <= hi;
+    if(ok) dentro++;
+    return `<li>
+      <div class="q">${k+1}. ${esc(c.q)}</div>
+      <div class="resultado ${ok?"dentro":"fora"}">
+        Resposta: ${fmt(c.v)} ${esc(c.u)} · seu intervalo: ${fmt(lo)} a ${fmt(hi)} · ${ok?"dentro":"fora"}
+      </div>
+    </li>`;
+  }).join("");
+
+  const bom = dentro >= 8;
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    <div class="placar">${dentro} de 10</div>
+    <p class="discreto">Você declarou 90% de confiança. O esperado era nove acertos.</p>
+    <div class="veredito ${bom?"bom":""}">
+      <strong>${bom?"Seus intervalos estão honestos.":"Seus intervalos estão estreitos demais."}</strong>
+      <p>${bom
+        ? "É raro. Repare que você pagou por isso com intervalos largos, e que largura não é fraqueza: é informação sobre o que você não sabe."
+        : "A média das pessoas acerta entre quatro e cinco. Não é falta de conhecimento, é excesso de confiança: você achou que sabia mais do que sabe, e o intervalo que desenhou revela isso."}</p>
+    </div>
+    <ul class="calib">${linhas}</ul>
+    <div class="gabarito">
+      <div class="rotulo">O que era esperado</div>
+      <div class="corpo">
+        <p>Ninguém pediu que você soubesse a altura do Everest. Pediu que soubesse o quanto não sabe, e isso quase todo mundo erra na mesma direção.</p>
+        <p>Na prática, isso aparece quando você entrega uma projeção de 42 milhões. O número parece firme, e quem recebe vai tratar como firme. Se a faixa honesta fosse de 30 a 58, a decisão possível é outra, e a pessoa que decidiu tinha o direito de saber.</p>
+        <p>Intervalo largo não é sinal de análise fraca. É a única forma de dizer com precisão o tamanho da sua incerteza.</p>
+      </div>
+      <div class="chave">${esc(passo.chave)}</div>
+      <div class="saibamais">
+        <div class="metodo">${esc(passo.metodo)}</div>
+        <div class="autor">${esc(passo.autor)}</div>
+        <p>${esc(passo.saibamais)}</p>
+      </div>
+    </div>
+    ${estado.modo==="sala" ? `<div class="aviso">Pausa de discussão: compare seu placar com o de duas pessoas ao lado. Alguém fez mais de 8?</div>` : ""}
+    <div class="acoes"><button class="principal" id="seguir">Continuar</button></div>
+  </div>`;
+  ligarSeguir();
+}
+
+/* ---------- ordenação ---------- */
+function telaOrdenacao(passo){
+  const mapa = Object.fromEntries(EVIDENCIAS.map(e=>[e.id,e]));
+  const cabeca = `
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>`;
+
+  if(estado.fase === "escrever"){
+    palco.innerHTML = `<div class="passo">${cabeca}
+      <p class="pergunta">${esc(passo.pergunta)}</p>
+      <ul class="pilha" id="pilha">
+        ${estado.ordem.map((id,k)=>`
+          <li><div class="num"></div>
+            <div class="txt">${esc(mapa[id].t)}</div>
+            <div class="setas">
+              <button data-sobe="${k}" ${k===0?"disabled":""} aria-label="Subir">▲</button>
+              <button data-desce="${k}" ${k===estado.ordem.length-1?"disabled":""} aria-label="Descer">▼</button>
+            </div>
+          </li>`).join("")}
+      </ul>
+      <p class="pergunta" style="margin-top:1.5rem">Por quê começar por essa?</p>
+      <textarea id="resp" placeholder="Uma frase que explique sua escolha.">${esc(estado.respostas[passo.id]||"")}</textarea>
+      <div class="acoes"><button class="principal" id="travar" disabled>Travar minha ordem</button></div>
+    </div>`;
+    palco.querySelectorAll("[data-sobe]").forEach(b=>{
+      b.onclick = ()=>{ const k=+b.dataset.sobe; const o=estado.ordem;
+        [o[k-1],o[k]]=[o[k],o[k-1]]; salvar(); render(); };
+    });
+    palco.querySelectorAll("[data-desce]").forEach(b=>{
+      b.onclick = ()=>{ const k=+b.dataset.desce; const o=estado.ordem;
+        [o[k+1],o[k]]=[o[k],o[k+1]]; salvar(); render(); };
+    });
+    const ta = $("#resp"), bt = $("#travar");
+    const checa = ()=>{ bt.disabled = travaAtiva || ta.value.trim().length < 15; };
+    ta.oninput = ()=>{ estado.respostas[passo.id]=ta.value; salvar(); checa(); };
+    bt.onclick = ()=>{ estado.fase="rubrica"; salvar(); window.scrollTo(0,0); render(); };
+    travar(bt, passo.id, 90, "libera em", checa);
+    checa();
+    return;
+  }
+
+  const posContra = estado.ordem.map((id,k)=>({id,k})).filter(o=>!mapa[o.id].favor).map(o=>o.k+1);
+  const resumo = `
+    <div class="ferramenta"><div class="titulo">A ordem que você montou</div>
+      <ol style="margin:0;padding-left:1.2rem;font-size:.92rem;line-height:1.5">
+        ${estado.ordem.map(id=>`<li style="margin-bottom:.3rem;color:${mapa[id].favor?"var(--texto-2)":"var(--falha)"}">${esc(mapa[id].t)}</li>`).join("")}
+      </ol>
+      <p class="miudo" style="margin:.7rem 0 0">Em cor diferente, as duas evidências que contrariam a recomendação. Você as colocou nas posições ${posContra.join(" e ")}.</p>
+    </div>`;
+
+  if(estado.fase === "rubrica"){
+    palco.innerHTML = `<div class="passo">
+      <div class="etiqueta">Situação ${passo.n} de 5</div>
+      <h1>${esc(passo.nome)}</h1>
+      ${resumo}${blocoRubrica(passo)}</div>`;
+    ligarRubrica(passo);
+    return;
+  }
+
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    ${blocoVeredito(passo)}${resumo}${blocoGabarito(passo)}</div>`;
+  ligarSeguir();
+}
+
+/* ---------- pitch de 40 segundos ---------- */
+let cronoId = null;
+function telaPitch(passo){
+  const cabeca = `
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>`;
+
+  if(estado.fase === "escrever"){
+    palco.innerHTML = `<div class="passo">${cabeca}
+      <p class="pergunta">${esc(passo.pergunta)}</p>
+      <div class="crono" id="crono">40</div>
+      <textarea id="resp" disabled placeholder="O campo libera quando o cronômetro começar."></textarea>
+      <div class="acoes">
+        <button class="principal" id="comecar">Começar os 40 segundos</button>
+        <button class="secundaria" id="travar" disabled>Travar antes do tempo</button>
+      </div>
+    </div>`;
+    const ta = $("#resp"), cr = $("#crono"), bc = $("#comecar"), bt = $("#travar");
+    const encerrar = ()=>{
+      clearInterval(cronoId);
+      ta.disabled = true;
+      estado.respostas[passo.id] = ta.value;
+      estado.fase = "rubrica";
+      salvar();
+      window.scrollTo(0,0);
+      render();
+    };
+    bc.onclick = ()=>{
+      let t = 40;
+      bc.disabled = true; bt.disabled = false;
+      ta.disabled = false; ta.focus();
+      cr.textContent = t;
+      clearInterval(cronoId);
+      cronoId = setInterval(()=>{
+        t--;
+        cr.textContent = t;
+        if(t <= 10) cr.classList.add("quente");
+        if(t <= 0) encerrar();
+      },1000);
+    };
+    bt.onclick = encerrar;
+    return;
+  }
+
+  const suaResposta = `
+    <div class="ferramenta"><div class="titulo">O que deu tempo de escrever</div>
+      <div style="font-size:.95rem;line-height:1.5;white-space:pre-wrap;color:var(--texto)">${esc(estado.respostas[passo.id]||"(nada)")}</div>
+    </div>`;
+
+  if(estado.fase === "rubrica"){
+    palco.innerHTML = `<div class="passo">
+      <div class="etiqueta">Situação ${passo.n} de 5</div>
+      <h1>${esc(passo.nome)}</h1>
+      ${suaResposta}${blocoRubrica(passo)}</div>`;
+    ligarRubrica(passo);
+    return;
+  }
+
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Situação ${passo.n} de 5</div>
+    <h1>${esc(passo.nome)}</h1>
+    ${blocoVeredito(passo)}${suaResposta}${blocoGabarito(passo)}</div>`;
+  ligarSeguir();
+}
+
+/* ---------- a ferramenta ---------- */
+function telaFerramenta(){
+  const f = estado.ferramenta;
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Os dez minutos que importam</div>
+    <h1>Uma frase que vale por um método</h1>
+    <p>Cinquenta minutos de erro serviram para uma coisa: mostrar que quase todo desses erros nasce no mesmo lugar, na hora em que a análise começa sem que ninguém tenha dito para que ela existe.</p>
+    <p>Essa frase resolve. Pegue uma análise de verdade que você tem para fazer nesta semana e preencha.</p>
+    <div class="ferramenta">
+      <div class="titulo">Complete com a sua análise real</div>
+      <div style="display:grid;gap:.6rem">
+        <div><label class="miudo" for="f1">Quem decide</label><input type="text" id="f1" value="${esc(f.quem)}" placeholder="o cargo ou o nome de quem vai decidir"></div>
+        <div><label class="miudo" for="f2">O quê</label><input type="text" id="f2" value="${esc(f.oque)}" placeholder="a decisão, em verbo: aprovar, cortar, priorizar"></div>
+        <div><label class="miudo" for="f3">Até quando</label><input type="text" id="f3" value="${esc(f.quando)}" placeholder="uma data, não um mês"></div>
+        <div><label class="miudo" for="f4">Usando qual critério</label><input type="text" id="f4" value="${esc(f.criterio)}" placeholder="o que faz uma opção ganhar da outra"></div>
+      </div>
+      <div class="saida" id="frase"></div>
+    </div>
+    <p class="miudo">Se você não conseguir preencher algum campo, esse campo é a sua próxima pergunta. Faça ela antes de abrir qualquer planilha.</p>
+    <div class="acoes"><button class="principal" id="seguir">Ver o cartão</button></div>
+  </div>`;
+  const campos = {quem:"#f1", oque:"#f2", quando:"#f3", criterio:"#f4"};
+  const pintar = ()=>{
+    const g = estado.ferramenta;
+    const v = k => g[k] && g[k].trim() ? g[k].trim() : "______";
+    $("#frase").textContent = `Esta análise existe para que ${v("quem")} decida ${v("oque")} até ${v("quando")}, usando ${v("criterio")}.`;
+  };
+  Object.entries(campos).forEach(([k,sel])=>{
+    $(sel).oninput = e => { estado.ferramenta[k] = e.target.value; salvar(); pintar(); };
+  });
+  pintar();
+  ligarSeguir();
+}
+
+/* ---------- cartão final ---------- */
+const CARTAO = [
+  "Que decisão vai ser tomada com isto?",
+  "Como esse número é calculado?",
+  "Quão largo é o intervalo?",
+  "Quando a consequência ruim aparece?",
+  "Se eu tivesse 40 segundos, o que diria?"
+];
+function telaCartao(){
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Fim</div>
+    <h1>Você entrou com cinco erros. Sai com cinco perguntas.</h1>
+    <p>Não são um método nem um framework. São cinco frases curtas que, feitas na hora certa, evitam a maior parte do que você errou aqui.</p>
+    <div class="cartao"><ol>${CARTAO.map(q=>`<li>${esc(q)}</li>`).join("")}</ol></div>
+    <h3>O que fazer com isso</h3>
+    <p class="discreto">Daqui a 48 horas, tente escrever as cinco de memória. Daqui a uma semana, de novo. Daqui a três semanas, a mais valiosa das três, sem consultar nada. Reformular diferente não é erro: é sinal de que virou seu.</p>
+    <div class="acoes">
+      <button class="secundaria" id="copiar">Copiar meu resumo</button>
+      <button class="secundaria" id="paraTrilha">Ver a trilha de aprendizado</button>
+    </div>
+    <p class="miudo" id="avisoCopia" style="margin-top:.6rem"></p>
+    <div class="aviso">Se você abriu este arquivo direto do celular, o progresso pode não sobreviver ao fechamento do aplicativo. Copie o resumo antes de sair.</div>
+  </div>`;
+  $("#paraTrilha").onclick = ()=>{ estado.telaTrilha = true; salvar(); window.scrollTo(0,0); render(); };
+  $("#copiar").onclick = async ()=>{
+    const linhas = [];
+    linhas.push("5 HÁBITOS DE CONSULTORIA ESTRATÉGICA · meu resumo");
+    linhas.push("");
+    const f = estado.ferramenta;
+    linhas.push("A frase, aplicada ao meu trabalho:");
+    linhas.push(`Esta análise existe para que ${f.quem||"______"} decida ${f.oque||"______"} até ${f.quando||"______"}, usando ${f.criterio||"______"}.`);
+    linhas.push("");
+    linhas.push("As cinco perguntas:");
+    CARTAO.forEach((q,k)=>linhas.push(`${k+1}. ${q}`));
+    linhas.push("");
+    linhas.push("O que eu respondi:");
+    PASSOS.filter(p=>estado.respostas[p.id]).forEach(p=>{
+      linhas.push(`· ${p.nome}: ${estado.respostas[p.id]}`);
+    });
+    const dentro = CALIBRAGEM.reduce((a,c,k)=>{
+      const g = estado.calib[k]; if(!g) return a;
+      const lo=Math.min(g.min,g.max), hi=Math.max(g.min,g.max);
+      return a + (c.v>=lo && c.v<=hi ? 1 : 0);
+    },0);
+    if(estado.calibFeito) linhas.push(`· Calibragem: ${dentro} de 10 dentro do intervalo declarado de 90%.`);
+    const texto = linhas.join("\n");
+    const aviso = $("#avisoCopia");
+    try{
+      await navigator.clipboard.writeText(texto);
+      aviso.textContent = "Resumo copiado. Cole onde quiser guardar.";
+    }catch(e){
+      const ta = document.createElement("textarea");
+      ta.value = texto; ta.style.width="100%"; ta.style.minHeight="14rem";
+      aviso.textContent = "A cópia automática não funcionou aqui. Selecione o texto abaixo e copie na mão.";
+      aviso.after(ta); ta.select();
+    }
+  };
+}
+
+/* ---------- trilha ---------- */
+function telaTrilha(){
+  palco.innerHTML = `<div class="passo">
+    <div class="etiqueta">Referência</div>
+    <h1>A trilha por trás do jogo</h1>
+    <p>Cada situação treinou um músculo diferente. Aqui está o que cada uma era, e o que fazer para que vire hábito em vez de lembrança.</p>
+    ${TRILHAS.map((t,k)=>`
+      <div class="trilha-item">
+        <h2>${k+1}. ${esc(t.t)}</h2>
+        <p class="discreto">${esc(t.d)}</p>
+        <p class="miudo"><strong>Método:</strong> ${esc(t.metodo)} · ${esc(t.autor)}</p>
+        ${t.p.map(([rot,txt])=>`
+          <div class="trilha-passo"><div class="rot">${esc(rot)}</div><p>${esc(txt)}</p></div>`).join("")}
+      </div>`).join("")}
+    <h3>Onde continuar</h3>
+    <p class="miudo"><strong>The Pyramid Principle, Barbara Minto</strong><br>A estrutura de como começar pela resposta. Vários resumos livres cobrem o essencial.</p>
+    <p class="miudo"><strong>Bulletproof Problem Solving, Conn & McLean</strong><br>Capítulos 3 e 4 sobre decomposição e definição de problema são únicos em português.</p>
+    <p class="miudo"><strong>Thinking in Systems, Donella Meadows</strong><br>O ensaio Leverage Points está disponível gratuitamente. Cobre o núcleo de como sistemas funcionam.</p>
+    <p class="miudo"><strong>Superforecasting, Tetlock & Gardner</strong><br>Calibragem e previsão com intervalo. Exercícios do Good Judgment Open são abertos.</p>
+    <p class="miudo"><strong>The Logic of Scientific Discovery, Karl Popper</strong><br>Fundação filosófica de falsabilidade. Prefácio e capítulos 1 a 3 trazem a ideia principal.</p>
+    <div class="acoes"><button class="principal" id="voltar">Voltar</button></div>
+  </div>`;
+  $("#voltar").onclick = ()=>{ estado.telaTrilha=false; salvar(); window.scrollTo(0,0); render(); };
+}
+
+/* ---------- controles do topo ---------- */
+$("#btnTrilha").onclick = ()=>{
+  estado.telaTrilha = !estado.telaTrilha;
+  salvar(); window.scrollTo(0,0); render();
+};
+$("#btnReiniciar").onclick = ()=>{
+  if(!confirm("Apagar tudo e recomeçar do zero?")) return;
+  try{ localStorage.removeItem(CHAVE); }catch(e){}
+  estado = {
+    modo:null, i:0, fase:"escrever", respostas:{}, marcados:{},
+    ordem:EVIDENCIAS.map(e=>e.id), calib:{}, calibFeito:false,
+    acertos:{}, ferramenta:{quem:"",oque:"",quando:"",criterio:""}, travas:{},
+    telaTrilha:false
+  };
+  salvar(); window.scrollTo(0,0); render();
+};
+$("#marca").onclick = ()=>{ if(estado.telaTrilha){ estado.telaTrilha=false; render(); } };
+
+render();
+</script>
+</body>
+</html>
