@@ -801,7 +801,6 @@ function ligarSeguir(){
 /* ---------- caso escrito ---------- */
 function telaCaso(passo){
   const cabeca = `
-    <br>
     <div class="etiqueta">Situação ${passo.n} de 5</div>
     <h1>${esc(passo.nome)}</h1>
     <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
@@ -1008,6 +1007,7 @@ function telaCalibragem(passo){
 function telaOrdenacao(passo){
   const mapa = Object.fromEntries(EVIDENCIAS.map(e=>[e.id,e]));
   const cabeca = `
+    <BR>
     <div class="etiqueta">Situação ${passo.n} de 5</div>
     <h1>${esc(passo.nome)}</h1>
     <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>`;
