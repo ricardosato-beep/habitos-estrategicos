@@ -271,7 +271,7 @@ tfoot td{font-weight:700;border-bottom:none;border-top:1px solid var(--texto-3);
 </header>
 
 <main class="envelope" id="palco"></main>
-
+<BR>
 <script>
 "use strict";
 
@@ -1007,7 +1007,6 @@ function telaCalibragem(passo){
 function telaOrdenacao(passo){
   const mapa = Object.fromEntries(EVIDENCIAS.map(e=>[e.id,e]));
   const cabeca = `
-    <BR>
     <div class="etiqueta">Situação ${passo.n} de 5</div>
     <h1>${esc(passo.nome)}</h1>
     <div class="historia">${passo.historia.map(p=>`<p>${esc(p)}</p>`).join("")}</div>`;
